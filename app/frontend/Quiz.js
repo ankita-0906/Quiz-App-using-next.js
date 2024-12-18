@@ -15,7 +15,7 @@ export default function Quiz() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetch("http://localhost:3000/backend/firebase");
+        const res = await fetch("http://localhost:3000/api/backend/firebase");
         const data = await res.json();
         setQuestions(data);
       } catch (error) {
