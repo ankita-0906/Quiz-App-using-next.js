@@ -15,7 +15,7 @@ export default function Quiz() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/backend/firebase");
+        const res = await fetch("https://quiz-app-using-next-js.vercel.app/api/backend/firebase");
         const data = await res.json();
         setQuestions(data);
       } catch (error) {
