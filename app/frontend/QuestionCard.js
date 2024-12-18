@@ -9,19 +9,23 @@ export default function QuestionCard({
   userAnswer,
   hintUsed,
 }) {
-  const [selectedOption, setSelectedOption] = useState(userAnswer); // Local state for selected option
+  const [selectedOption, setSelectedOption] = useState(""); // Local state for selected option
 
   // When navigating back to a previous question, initialize the answer
   useEffect(() => {
-    setSelectedOption(userAnswer);
-  }, [userAnswer]);
+    console.log(userAnswer)
+    setSelectedOption(userAnswer||"");
+    // 
+  }, [question,userAnswer]);
 
   const handleOptionChange = (option) => {
+    console.log(option)
     setSelectedOption(option); // Update local selection
   };
 
   const handleSave = () => {
-    onSaveAnswer(selectedOption); // Save answer (empty if none selected)
+    console.log(selectedOption)
+    onSaveAnswer(selectedOption||""); // Save answer (empty if none selected)
   };
 
   return (

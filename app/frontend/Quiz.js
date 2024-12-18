@@ -15,7 +15,7 @@ export default function Quiz() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetch("/api/backend/firebase");
+        const res = await fetch("http://localhost:3000/api/backend/firebase");
         const data = await res.json();
         setQuestions(data);
       } catch (error) {
@@ -35,10 +35,12 @@ export default function Quiz() {
   };
 
   // Save the selected answer and move to the next question
+  
+  console.log(answers)
   const handleSaveAnswer = (answer) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questions[currentIndex].id]: answer || "", // Save answer or empty if none selected
+      [questions[currentIndex].id]: answer, // Save answer or empty if none selected
     }));
 
     // Move to the next question only if not the last one
@@ -56,14 +58,16 @@ export default function Quiz() {
 
   // Calculate final score and submit the quiz
   const handleSubmitQuiz = () => {
-    if (Object.keys(answers).length < questions.length) {
-      alert("Please answer all questions before submitting.");
-      return;
-    }
+    // if (Object.keys(answers).length < questions.length) {
+    //   alert("Please answer all questions before submitting.");
+    //   return;
+    // }
 
-    let finalScore = 0;
+    let finalScore = score;
 
+    console.log(answers);
     questions.forEach((question) => {
+      
       const userAnswer = answers[question.id] || "";
       if (userAnswer === question.answer) {
         finalScore += 20; // Correct answer: +20 points
@@ -128,4 +132,4 @@ export default function Quiz() {
       )}
     </div>
   );
-}
+s}
